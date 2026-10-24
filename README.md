@@ -59,31 +59,52 @@ Sorts text posts from r/airplanechefs (a subreddit for the mobile game Airplane 
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
-### `label_one`
+### `tip`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `label_two`
-
-**Definition:**
+**Definition:** Shares specific and helpful information about the game that other players can use, such as level costs and priority upgrades.
 
 **Example 1:**
->
+> Hit and trial findings for daily challenge - Serve 100 Bowls of Beans in London — Did a first Serve 100 daily challenge today and thought this might help someone. You end up serving these many bowls on the following levels - 46 - 10, 47 - 12, 48 - 19, 49 - 13, 50 - 9. Obviously Lvl 48 is the best so far.
 
 **Example 2:**
->
+> Serve 100 Creme Brulees in Paris — Just thought to share. I did level 49 twice so i can confirm if it's really 19
+
+### `complaint`
+
+**Definition:** Complains about the game/game developers/ads/price/difficulty.
+
+**Example 1:**
+> I wish the game wasn't so money dependent — it seems like to do good in this game u gotta spend money on everything, from needing gems to upgrade and needing fuel because it takes so long to replenish. and this isn't really a problem for me but I think it's unfair for ppl who enjoy the game but don't necessarily have that ability to spend a lot of money
+
+**Example 2:**
+> Does anybody else feel that the daily tasks are getting worse day by day? — Why would I play 7 levels just to get coins?
+
+
+### `milestone`
+
+**Definition:** Annouces personal achievement on the game.
+
+**Example 1:**
+> finished every airport — i've 3-starred every airport, now I don't know what to do with my life. lmao just kidding. but i really hope they make a new airport soon. [...] i'm proud i finished this game without buying anything
+
+**Example 2:**
+> All airports done ✅ What to do now? — I'm done with all the airports. I don't know what to do with my life now 🥲
+
+### `question`
+
+**Definition:** Needs an answer from other players to proceed, such as why something is broken or how to do something.
+
+**Example 1:**
+> Why isn't my bacon fryer working? — I can do a first round but not a second it's so annoying and I don't have enough gems to upgrade it was fine before upgrading is this a glitch?
+
+**Example 2:**
+> What's wrong with the game today? — Everytime i select an airport my game crashes. Does anyone experience this at the moment?
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `complaint` vs. `question`, since complaints are often phrased as questions ("?")
 
-**The decision rule I used every time:**
+**The decision rule I used every time:** If the post would still make sense without the question then it's `complaint`. If it needs a reply to be complete, it's `question`. Example: "Do they really think we have money like that??! - What's up with these prices on airplane chefs?? I dont mind spending $5 bucks [...] but this is ridiculous!" These are framed as questions but OP doesn't actually need an answer. "Why isn't my bacon fryer working?" can't be resolved without an answer, so it's a `question`.
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
 
