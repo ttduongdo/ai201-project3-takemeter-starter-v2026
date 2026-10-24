@@ -41,6 +41,11 @@
 
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
+Sorts text posts from r/airplanechefs (a subreddit for the mobile game Airplane Chefs) by 4 categories: 
+- sharing something others can use, 
+- complaints about the game, 
+- celebrating progress,
+- asking for help. 
 
 
 
