@@ -168,16 +168,23 @@ Say so plainly — the disclosure is required, not penalised. -->
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
 
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** 3 epochs, learning rate 2e-5, batch size 16, seed 42, max length 128 tokens<!-- epochs, learning rate, batch size, seed -->
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** None
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
+**Split sizes:** train 148, val 32, test 32 (70/15/15). `milestone` has only 3 examples in the test split.
+<!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
 of next unit's variance. -->
 
+| Label | Train | Val | Test |
+|---|---|---|---|
+| `tip` | 40 | 9 | 9 |
+| `complaint` | 48 | 11 | 10 |
+| `milestone` | 16 | 3 | 3 |
+| `question` | 44 | 9 | 10 |
 
 
 ---
@@ -191,19 +198,20 @@ of next unit's variance. -->
      workflow and disclosing it costs you nothing. Not disclosing it is the
      problem. -->
 
-**Moment 1**
+**Moment 1: acceptance criteria**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Help with choosing criteria 4 and 5.
+- *What came back:* A draft with numbers and reasons for each. Criterion 4 was a self-consistency check (re-label 30 posts a week later), and criterion 5 was a test of whether the model's high-confidence predictions are right more often.
+- *What I changed:* I thought both were too complicated for 200 posts so I replaced them. Criterion 4 became "beats the always-guess-the-biggest-label baseline by 15 points", and criterion 5 became a cap on `question` vs. `complaint` confusion (hardest boundary).
 
-**Moment 2**
+**Moment 2: checking my cold labels**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I sent my 22 cold-labelled rows and asked Claude to pre-label the rest with my existing definitions and rules.
+- *What came back:* 190 rows labelled and marked with "ai-label".
+- *What I changed:* I reviewed the pre-labelled rows and corrected its decision on about 15 posts + tightened the rules.
 
-**Pre-labelling disclosure:**
+
+**Pre-labelling disclosure:** I also asked Claude to flag posts that genuinely don't fall into any of the 4 labels as "hard case". They were either official game announcements, jokes, discussion prompts, or can fit 2 labels equally. I'm not sure if I should drop these from the dataset or allow for some weaker labelling.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
