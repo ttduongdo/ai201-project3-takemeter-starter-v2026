@@ -51,61 +51,61 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall accuracy is at least 0.65 on the held-out set.
 
 <!-- Your criterion. It must name a number. -->
 
 
 
-**Why this target:**
+**Why this target:** There are 4 labels (`tip`, `complaint`, `milestone`, `question`) so randomly guessing gets ~25%. I would only consider a post sorter useful if it labels right 6.5 times out of 10.
 
 
 
 ---
 
-## 2.
+## 2. Every label has an F1 of at least 0.60 on the held-out set.
 
 <!-- Your criterion. -->
 
 
 
-**Why this target:**
+**Why this target:** A 20% test set split of 200 posts is only about 40 posts (around 10 per label) so one wrong prediction moves a label's F1 a lot. 0.60 is a fair F1 threshold to hold across seeds.
 
 
 
 ---
 
-## 3.
+## 3. No label is more than 50% of the dataset, and none is less than 10% (at least 20 posts).
 
 <!-- Your criterion. -->
 
 
 
-**Why this target:**
+**Why this target:** I think 50% is a tighter bar than 70% and more realistic for this sub. The 10% floor is so the smallest label has enough examples to learn and to appear in the held-out set at all.
 
 
 
 ---
 
-## 4.
+## 4. Accuracy beats the share of the largest label by at least 15 points.
 
 <!-- Your criterion. -->
 
 
 
-**Why this target:**
+**Why this target:** If a certain label is a large share of the dataset, the model needs to perform substantially better than just guessing the most common label.
 
 
 
 ---
 
-## 5.
+## 5. At most 25% of true `question` posts are predicted as `complaint`, and at most 25% of true `complaint` posts are predicted as `question`.
 
 <!-- Your criterion. -->
 
 
 
-**Why this target:**
+**Why this target:** `complaint` vs. `question` is the hardest boundary in my taxonomy, and there is a specific rule for it. If the model confuses them more than 1/4 of the time, either the rule isn't learnable from this data or my labels aren't consistent. With only about 10 posts per label in the held-out set, 25% is 2–3 posts.
 
 
 

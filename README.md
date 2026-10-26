@@ -104,7 +104,10 @@ Sorts text posts from r/airplanechefs (a subreddit for the mobile game Airplane 
 
 **Which two labels:** `complaint` vs. `question`, since complaints are often phrased as questions ("?")
 
-**The decision rule I used every time:** If the post would still make sense without the question then it's `complaint`. If it needs a reply to be complete, it's `question`. Example: "Do they really think we have money like that??! - What's up with these prices on airplane chefs?? I dont mind spending $5 bucks [...] but this is ridiculous!" These are framed as questions but OP doesn't actually need an answer. "Why isn't my bacon fryer working?" can't be resolved without an answer, so it's a `question`.
+**The decision rule I used every time:** 
+- If the post would still make sense without the question then it's `complaint`. 
+- If it needs a reply to be complete, it's `question`. 
+- Example: "Do they really think we have money like that??! - What's up with these prices on airplane chefs?? I dont mind spending $5 bucks [...] but this is ridiculous!" These are framed as questions but OP doesn't actually need an answer. "Why isn't my bacon fryer working?" can't be resolved without an answer, so it's a `question`.
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
 
