@@ -120,19 +120,21 @@ Sorts text posts from r/airplanechefs (a subreddit for the mobile game Airplane 
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** r/airplanechefs, a public subreddit for the mobile cooking game Airplane Chefs. I downloaded Reddit's public JSON listing for the sub (300 posts) and kept the only text posts which trims the total down to 212.
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
+**How I labelled them:** I labelled 22 posts cold first and pre-labelled the other 190 with Claude, given my definitions and boundary rules. I then review all the pre-labelled posts and have the AI flag hard cases to tighten the rules.
+<!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `complaint` | 69 | 32.5% |
+| `question` | 63 | 29.7% |
+| `tip` | 58 | 27.4% |
+| `milestone` | 22 | 10.4% |
+| **Total** | 212 | 100% |
 
 **Three hard cases**
 
@@ -140,25 +142,25 @@ Say so plainly — the disclosure is required, not penalised. -->
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "I really enjoy this game but…" — "I enjoy playing this game a lot.. when I bought Los Angeles map I liked it at first but then it became too much to do for a while so I stopped playing and moved on to another world.. does anyone else feel like this or is is just only me"
 >
-> *Could have been:*
+> *Could have been:* `question` or `complaint`
 >
-> *I chose, because:*
+> *I chose `complaint`, because:* it ends with a question mark, but "does anyone else feel like this" only invites agreement. The post makes its point with the question removed, so it's a `complaint`.
 
 **2.**
-> *The post:*
+> *The post:* "We need to report them to the App Store!!" — "Everyone that isn't getting rewards after watching ads should report them on the App Store. Nordcurrent obviously doesn't care but the App Store might. Go to the App Store app look up airplane chef, scroll down and press report a problem."
 >
-> *Could have been:*
+> *Could have been:* `tip` or `complaint`
 >
-> *I chose, because:*
+> *I chose `tip`, because:* it gives concrete steps another player can follow, even though it's driven by a complaint about the ads.
 
 **3.**
-> *The post:*
+> *The post:* "Finally reached 150 smiles on a level!" — "Location: Singapore (Level 50) I have the first class seats here btw, though they aren't fully upgraded"
 >
-> *Could have been:*
+> *Could have been:* `milestone` or `tip`
 >
-> *I chose, because:*
+> *I chose `tip`, because:* the title is an achievement, but the level and the seat upgrades are details another player could use to repeat it.
 
 ---
 
