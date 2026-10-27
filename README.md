@@ -253,24 +253,25 @@ of next unit's variance. -->
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
-
+| 1. Overall accuracy | ≥ 0.65 | 0.469 | 0.406 | 0.375 | **MISSED** |
+| 2. Every label F1 | ≥ 0.60 on all 4 labels | 1 of 4 | 0 of 4 | 0 of 4 | **MISSED** |
+| 3. Balance | no label >50% or <10% | 32.5% max, 10.4% min | same | same | **MET** |
+| 4. Beats largest-label share | by ≥ 15 points | +15.6 pts | +9.4 pts | +6.3 pts | **MISSED** |
+| 5. Boundary errors | `question`↔`complaint` ≤ 25% each way | `question`→`complaint` 60% | `question`→`complaint` 100% | `complaint`→`question` 60% | **MISSED** |
 ### Confusion matrix
 
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
-|---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| true \ predicted | tip | complaint | milestone | question |
+|---|---|---|---|---|
+| **tip** | 1 | 3 | 0 | 5 |
+| **complaint** | 0 | 10 | 0 | 0 |
+| **milestone** | 0 | 2 | 0 | 1 |
+| **question** | 0 | 6 | 0 | 4 |
 
 **My biggest off-diagonal number, and what it means:**
+6 real `question` posts were called `complaint`, and 0 real `complaint` posts were called `question`, so the model hasn't learned where `complaint` ends and `question` begins, and it leans in one direction only.
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
