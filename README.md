@@ -227,16 +227,18 @@ of next unit's variance. -->
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.531 | 0.469 | -0.062 |
+| Macro F1 | 0.333 | 0.311 | -0.022 |
+| F1 — `complaint` | 0.000 | 0.645 | +0.645 |
+| F1 — `milestone` | 0.000 | 0.000 | +0.000 |
+| F1 — `question` | 0.667 | 0.400 | -0.267 |
+| F1 — `tip` | 0.667 | 0.200 | -0.467 |
 
-**What I predicted before I looked:**
+**What I predicted before I looked:** 148 posts in the training set are not enough to improve overall accuracy substantially, but I expect it to hit 0.6. F1 for `complaint` would probably improve the most out of the 4 labels since it has the most posts.
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
 
-**What the gap actually means:**
+**What the gap actually means:** The baseline built from my definitions beat my trained model by 2 posts (0.531 vs. 0.469 accuracy). Training helped only on `complaint` (F1 0.645 vs. 0.000) and hurt on `tip` (F1 0.200 vs. 0.667) and `question` (F1 0.400 vs. 0.667), and both scored 0.000 on `milestone` (3 test posts). A no-definitions run scored the highest of the three at 0.594, so a general model with no training did at least as well as mine every time. In plain terms, fine-tuning on 148 posts did not beat a general model, and the only label where it clearly won was the largest one. I'm not sure yet whether the cause is undertraining or too few posts or noisy labels.
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
 

@@ -5,6 +5,7 @@
 #
 # Delete the examples below and put yours in.
 
-analysis: makes an argument backed by a specific, checkable fact
-hot_take: a confident claim with no support offered
-reaction: an immediate response to something that just happened
+tip: sharing specific, checkable information another player could use, such as level numbers, counts, costs or steps
+complaint: criticizing the game, the developers, the ads, the prices or the difficulty, where the point is the grievance and not a request for an answer
+milestone: announcing personal progress or an achievement, with no information another player could act on
+question: asking other players for an answer, such as why something is broken or how to do something
