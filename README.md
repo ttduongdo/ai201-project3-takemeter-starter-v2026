@@ -400,10 +400,14 @@ of next unit's variance. -->
 ## What's Still Broken
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
+**C1 (accuracy ≥ 0.65), missed on seed 7 (0.625).** I would run more epochs or a faster learning rate together, since 8 epochs at 5e-5 reached 0.688 to 0.750 on all 3 seeds.
+
+**C2 (every label F1 ≥ 0.60) missed on all 3 seeds, mainly by `milestone`.** I would collect more real `milestone` posts and enlarge the test set to at least 8 `milestone` posts. I stopped because Reddit blocked my scraping, and adding 21 real and 20 synthetic posts did not change accuracy.
+
+**C5 (≤ 25% each way between `question` - `complaint`), missed on seed 42 (30% `question`→`complaint`) and seed 2024 (40% `complaint`→`question`).** I would re-read the confused posts and check whether I applied the complaint-versus-question rule the same way each time.
 
 
-
-**The gap between what I meant my labels to capture and what the model learned:**
+**The gap between what I meant my labels to capture and what the model learned:** I meant `milestone` to mean "I achieved something, with nothing a reader can act on", but the model sent most of those test posts to `complaint` or `question`, so it hasn't learned that distinction (F1 0.000 / 0.000 / 0.500). The `question` and `complaint` boundary is still unstable: it leans toward `complaint` on seed 42 and toward `question` on seed 2024, which suggests the boundary itself is ambiguous in my data.
 <!-- Two sentences. Your confusion matrix is the evidence. -->
 
 
