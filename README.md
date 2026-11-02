@@ -287,13 +287,17 @@ of next unit's variance. -->
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.65 | **MISSED** | 0.469, 0.406 and 0.375 across 3 seeds|
+| 2 | Every label F1 | ≥ 0.60 on all four | **MISSED** | Only `complaint` cleared 0.60 on seed 42 |
+| 3 | Balance | no label >50% or <10% | **MET** | 32.5% max, 10.4% min |
+| 4 | Beats largest-label share | by ≥ 15 points | **MISSED** | Only seed 42 beats it by 15.6 pts |
+| 5 | Boundary errors | ≤ 25% each way, `question`↔`complaint` | **MISSED** | Seed 42: `question`→`complaint` 60%`; Seed 7: `question`→`complaint` 100%. Seed 2024: `complaint`→`question` 60% |
 
 **Diagnoses**
+- **C2: Too few `milestone` examples:** I have only  16 `milestone` posts in training and 3 in test, and the model never predicted the label, so it probably was not enough for the model to learn.
+- **C2: Long `tip` posts might be cut off:** the model reads only the first 128 tokens and `tip` posts are the longest, so the numbers might not make the cut off. Needs testing.
+- **C5: Hard label pair `complaint` vs. `question`:** The error direction flipped between seeds which looks like the model collapsing onto one label.
+- **C1, C4: Not enough training data in general:** on seeds 42 and 7 the model called 21 and 29 of 32 test posts `complaint`, never predicted `milestone`, and rarely predicted `tip`, which fits a task the model can't reach from 148 training posts.
 
 <!-- For each miss: the cause, and how you know. The four common causes are:
      too few examples for a label, a boundary you applied inconsistently, a
@@ -316,14 +320,14 @@ of next unit's variance. -->
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** 30 / 30 = 100%
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
      of the 30 were chosen because they're genuinely ambiguous — you should be
      winning some of these. -->
 
-**Disagreements**
+**Disagreements** None
 
 <!-- Three lines each: the post, both labels, and who you think is right and
      why — grounded in the staff definitions you were both applying.
@@ -364,21 +368,27 @@ of next unit's variance. -->
 
 ## The Improvement
 
-**What I changed:**
+**What I changed:** 3 epochs to 8 epochs
 
-**Which diagnosis pointed at it:**
+**Which diagnosis pointed at it:** My first diagnosis actually pointed at not enough data: `milestone` had an F1 of 0 on all three seeds, with only 3 test posts. I added 21 `milestone` posts to training only. Accuracy did not move meaningfully, which makes sense because `milestone` is only 3 of 32 test posts, so even a perfect score on it could only add about 9 points. The confusion matrices showed the model collapsing onto `complaint`, and with 148 training posts at batch size 16, 3 epochs is only about 30 update steps. I concluded the model was undertrained, so I raised the epochs.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Accuracy | ≥ 0.65 | 0.656 | 0.625 | 0.656 | **MISSED** (2 of 3 seeds) |
+| 2. Every label F1 | ≥ 0.60 | min 0.000 (`milestone`) | min 0.000 (`milestone`) | min 0.500 (`milestone`) | **MISSED** (`milestone` fails on all 3 seeds; `question` 0.556 and `complaint` 0.560 / 0.571 on some) |
+| 3. Label balance | no label > 50% or < 10% | 32.5% max / 10.4% min | same | same | **MET** |
+| 4. Beats largest-label share | accuracy ≥ 32.5% + 15 pts = 0.475 | +33.1 pts | +30.0 pts | +33.1 pts | **MET** |
+| 5. Confusion direction | ≤ 25% `question`→`complaint` and ≤ 25% `complaint`→`question` | 30% / 0% | 20% / 20% | 20% / 40% | **MISSED** (1 of 3 seeds) |
 
-**Did it help, and how do I know:**
+
+**Did it help, and how do I know:** Yes, it helped substantially but did not meet every criterion. 
+- Mean accuracy rose 0.417 → 0.646 and macro F1 0.263 → 0.546. 
+- C4: went from failing to passing on all 3 seeds.
+- C1: went from failing on all 3 seeds to passing on 2. 
+- C2: `tip` and `question` F1 improved on every seed. Still fails because `milestone` is still barely predicted, and it has only 3 test posts, so one post moves its F1 by a lot.
+- C5: improved on seed 7 but not overall
 
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
@@ -393,8 +403,7 @@ of next unit's variance. -->
 
 
 
-**The gap between what I meant my labels to capture and what the model
-learned:**
+**The gap between what I meant my labels to capture and what the model learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
 
 
